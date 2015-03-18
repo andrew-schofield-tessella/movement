@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="description" content="Movement : R package containing useful functions for the analysis of movement data in disease modelling and mapping">
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>Movement</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/andrew-schofield-tessella/movement">View on GitHub</a>
+
+          <h1 id="project_title">Movement</h1>
+          <h2 id="project_tagline">R package containing useful functions for the analysis of movement data in disease modelling and mapping</h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/andrew-schofield-tessella/movement/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/andrew-schofield-tessella/movement/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h1>
+<a id="movement--" class="anchor" href="#movement--" aria-hidden="true"><span class="octicon octicon-link"></span></a>movement <a href="https://travis-ci.org/andrew-schofield-tessella/movement"><img src="https://travis-ci.org/andrew-schofield-tessella/movement.svg?branch=master" alt="Build Status"></a> <a href="https://coveralls.io/r/andrew-schofield-tessella/movement"><img src="https://coveralls.io/repos/andrew-schofield-tessella/movement/badge.svg" alt="Coverage Status"></a>
+</h1>
+
+<h2>
+<a id="r-package-containing-useful-functions-for-the-analysis-of-movement-data-in-disease-modelling-and-mapping" class="anchor" href="#r-package-containing-useful-functions-for-the-analysis-of-movement-data-in-disease-modelling-and-mapping" aria-hidden="true"><span class="octicon octicon-link"></span></a>R package containing useful functions for the analysis of movement data in disease modelling and mapping</h2>
+
+<p>This package is a collaborative effort between a group of researchers to foster research into the analysis of human and animal movement for epidemiology. It's still in the very early stages of development, so expect the content to change a great deal in the future.</p>
+
+<h3>
+<a id="installing-and-loading-the-package" class="anchor" href="#installing-and-loading-the-package" aria-hidden="true"><span class="octicon octicon-link"></span></a>installing and loading the package</h3>
+
+<p>To install the package from github you first need to install and load Hadley Wickham's <a href="http://cran.r-project.org/web/packages/devtools/index.html">devtools package</a>, like this:</p>
+
+<pre><code>install.packages('devtools')
+library(devtools)
+</code></pre>
+
+<p>Then use the <code>install_github</code> function</p>
+
+<pre><code>install_github('movement', 'SEEG-Oxford')
+</code></pre>
+
+<p>and load the package and you're ready to go</p>
+
+<pre><code>library(movement)
+</code></pre>
+
+<h3>
+<a id="usage" class="anchor" href="#usage" aria-hidden="true"><span class="octicon octicon-link"></span></a>Usage</h3>
+
+<p>The most common use of the package is to parameterize a movement model based on observed population movements, and then use this model to predict <em>de novo</em> population movements.</p>
+
+<pre><code>m &lt;- movement(locations = df_locations$location, coords = df_locations[, c('lon','lat')], population = df_locations$pop, movement_matrix = observed, model = 'radiation with selection')
+</code></pre>
+
+<p>Where df_locations is a data.frame containing location, lon, lat and pop columns corresponding to location ids, coordinates and populations respectively. movement_matrix is a square matrix of observed population movements between the location_ids, and model is the selected movement model (valid models are radiation with selection, original radiation, gravity, intervening opportunities and uniform selection).</p>
+
+<p>This returns an optimisedmodel object which can be used by predict() to predict population movements from a RasterLayer, or a dataframe formatted as df_locations above.</p>
+
+<pre><code>prediction &lt;- predict(m, raster)
+prediction &lt;- predict(m, df_locations)
+</code></pre>
+
+<h3>
+<a id="contributors" class="anchor" href="#contributors" aria-hidden="true"><span class="octicon octicon-link"></span></a>Contributors</h3>
+
+<p><a href="http://www.map.ox.ac.uk/about-map/map-team/nicholas-golding/">Nick Golding</a> @ <a href="http://simonhay.zoo.ox.ac.uk/staff.php">Spatial Ecology and Epidemiology Group, Oxford</a></p>
+
+<p>Andrew Schofield @ <a href="http://www.tessella.com/">Tessella</a></p>
+
+<h3>
+<a id="reporting-bugs" class="anchor" href="#reporting-bugs" aria-hidden="true"><span class="octicon octicon-link"></span></a>Reporting Bugs</h3>
+
+<p>You can report bugs, issues and suggestions for extra functions using the issues button on the right hand side of this page.</p>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">Movement maintained by <a href="https://github.com/andrew-schofield-tessella">andrew-schofield-tessella</a></p>
+        <p>Published with <a href="https://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+    
+
+  </body>
+</html>
